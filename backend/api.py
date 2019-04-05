@@ -6,6 +6,7 @@ import torch
 from torchvision import transforms
 
 from models import unet_resnext50
+from models import oc_densenet128
 
 
 def sanitize(state_dict):
@@ -28,7 +29,8 @@ def load_state(path):
 
 
 class Segmentator(object):
-    size = (320, 240)
+    #size = (320, 240)
+    size=(128, 128)
 
     meanstd = {
         'mean': [0.485, 0.456, 0.406],
@@ -43,7 +45,9 @@ class Segmentator(object):
     ])
 
     def __init__(self):
-        self.net = unet_resnext50(num_classes=1)
+        #  self.net = unet_resnext50(num_classes=1)
+
+        self.net = oc_densenet128(num_classes=1)
         self.device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
     def load(self, checkpoint_path):

@@ -26,7 +26,8 @@ LOGGING_FORMAT = '[%(asctime)s] %(name)s:%(lineno)d: %(message)s'
 logging.basicConfig(format=LOGGING_FORMAT, level=LOGGING_LEVEL)
 
 segmentator = Segmentator()
-segmentator.load('resource/unet_resnext50.pth')
+#  segmentator.load('resource/unet_resnext50.pth')
+segmentator.load('resource/oc_densenet128.pth')
 
 app = Flask(__name__)
 logger = logging.getLogger(__file__)

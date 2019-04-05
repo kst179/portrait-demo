@@ -1,5 +1,9 @@
+import torch
 from torch import nn
 from .layers.self_attention import SelfAttentionBlock
+from torchvision import models
+from torch.functional import F
+
 
 class OCDenseNet(nn.Module):
     def __init__(self, num_classes, arch='densenet161'):
@@ -32,7 +36,7 @@ def oc_densenet128(num_classes=1, pretrained=False):
     net = OCDenseNet(num_classes)
 
     if pretrained:
-        state_dict = torch.load('./resources')
+        state_dict = torch.load('./resource/oc_densenet128.pth')
         net.load_state_dict(state_dict, strict=False)
 
     return net
